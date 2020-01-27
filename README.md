@@ -33,4 +33,11 @@ Table
 Point Tags = Custom - include "Hostname IPaddress OS Version"
 Uncheck all other boxes
 
+PING:
+
+Have created a simpler ping script to enable the ping of up to 50 hosts in one interval. Have tested it with 50 hosts @ 60 second intervals and it seems to work reliably.
+
+
+
+
 
