@@ -33,10 +33,20 @@ Table
 Point Tags = Custom - include "Hostname IPaddress OS Version"
 Uncheck all other boxes
 
-PING:
+pinghosts.sh:
 
 Have created a simpler ping script to enable the ping of up to 50 hosts in one interval. Have tested it with 50 hosts @ 60 second intervals and it seems to work reliably.
 
+Copy the file to the telegraf installation directory (/etc/telegraf).
+Create a file - proxy.conf - in the telegraf installation directory. proxy.conf file should contains two entries:
+proxyhostaddress (either hostname or IP address)
+proxyport number (default will be 2878)
+
+Create hosts.txt in /etc/telegraf
+Enter list of target hosts
+Copy ping.conf to the telegraf installation directory (/etc/telegraf)/telegraf.d)
+
+restart the telegraf service - service telegraf restart
 
 
 
