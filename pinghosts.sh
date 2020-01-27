@@ -1,4 +1,7 @@
 #!/bin/sh
+. /etc/telegraf/proxy.conf
+Proxy=$Proxy
+Port=$Port
 #
 # getping.sh - ping servers and produce a html report. Unix/Linux. 
 #
@@ -18,7 +21,7 @@ hostlist=""
 
 # hostfile - text file which is a list of hosts to ping, eg hostfile="prod.txt"
 #
-hostfile="/Users/croninr/Documents/hosts.txt"
+hostfile="/etc/telegraf/telegraf.d/hosts.txt"
 
 ping=/sbin/ping	# Location of ping
 hostsdb=/etc/hosts	# System hosts file, default hosts to ping
@@ -71,10 +74,10 @@ do
 	echo "percent loss = $Percent"
 	echo "Roundtrip = $RoundTrip"
 	if [ $Percent = "0.0%" ]; then
-	  echo "RjC.TestPing.HostUp 1 source=Region1 Target=$host" | nc -w 1 192.168.43.150 2878
-	  echo "RjC.TestPing.HostResponse $RoundTrip source=Region1 Target=$host" | nc -w 1 192.168.43.150 2878
+	  echo "Ping.HostUp 1 source=Region1 Target=$host" | nc -w 1 $Proxy $Port
+	  echo "Ping.HostResponse $RoundTrip source=Region1 Target=$host" | nc -w 1 $Proxy $Port
 	else
-	  echo "RjC.TestPing.HostDown 0 source=Region1 Target=$host" | nc -w 1 192.168.43.150 2878
+	  echo "Ping.HostDown 0 source=Region1 Target=$host" | nc -w 1 $Proxy $Port
 	fi
 done 
 
